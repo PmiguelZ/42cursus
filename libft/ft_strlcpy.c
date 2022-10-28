@@ -6,12 +6,27 @@
 /*   By: paalvare <paalvare@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:56 by paalvare          #+#    #+#             */
-/*   Updated: 2022/10/26 14:46:23 by paalvare         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:46:13 by paalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft"
+#include "libft.h"
 
-size_t	ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
+	size_t			i;
 
+	i = 0;
+	if (dstsize > i)
+	{
+		while (src[i] && i < (dstsize -1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = 0;
+	}
+	while (src[i])
+		i++;
+	return (i);
+}
