@@ -6,7 +6,7 @@
 /*   By: paalvare <paalvare@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:03:37 by paalvare          #+#    #+#             */
-/*   Updated: 2022/11/21 12:17:23 by paalvare         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:57:46 by paalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 #endif
