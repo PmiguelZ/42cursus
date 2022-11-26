@@ -6,7 +6,7 @@
 /*   By: paalvare <paalvare@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:03:37 by paalvare          #+#    #+#             */
-/*   Updated: 2022/11/25 12:36:44 by paalvare         ###   ########.fr       */
+/*   Updated: 2022/11/26 02:21:02 by paalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
+char	*ft_substr(char const *s, unsigned int strat, size_t len);
 
 #endif
