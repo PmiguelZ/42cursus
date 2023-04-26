@@ -6,44 +6,47 @@
 #    By: paalvare <paalvare@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 11:56:23 by paalvare          #+#    #+#              #
-#    Updated: 2023/01/12 02:37:04 by paalvare         ###   ########.fr        #
+#    Updated: 2023/04/24 13:14:51 by paalvare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+NAME		= libftprintf.a
+HEADER		= ft_printf.h
+INCLUDE		= include
+SRC_DIR		= src/
+OBJ_DIR		= $(SRCS:.c=.o)
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra -I
+RM			= rm -f
+AR			= ar rcs
 
-NAME		= libft.a
-BONUS_NAME	= .bonus
-HEADER		= libft.h
-SRCS		= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memchr.c ft_memcpy.c ft_memcmp.c ft_memmove.c ft_strlcpy.c ft_strnstr.c ft_strlcat.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_split.c ft_itoa.c ft_striteri.c
-INCLUDE		= -I ./
-SRCS_BONUS	=	ft_lstnew_bonus.c #ft_lstlast_bonus.c ft_lstadd_front_bonus.c \
-				ft_lstsize_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c	\
-				ft_lstadd_back_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
-CFLAGS	= -Werror -Wall -Wextra
-RM			= /bin/rm -rf
-LIB			= ar -rcs
-OBJ			= $(SRCS:.c=.o)
-OBJ_BONUS	= $(SRCS_BONUS:.c=.o)
+SRC_FILES	=	ft_printf ft_flags ft_itoa ft_hex ft_ptr ft_unsigned
 
-%.o:%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+###
+
 
 all:		$(NAME)
 
-$(NAME): $(OBJ)
-	@$(LIB) $(NAME) $(OBJ)
+$(NAME):	$(OBJ)
+			@$(AR) $(NAME) $(OBJ)
 
-bonus:	$(BONUS_NAME)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(BONUS_NAME) : $(OBJ) $(OBJ_BONUS)
-	@$(LIB) $(NAME) $(OBJ) $(OBJ_BONUS)
-	@touch $@
+$(OBJF):
+			@mkdir -p $(OBJ_DIR)
 
 clean:
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+			@$(RM) -rf $(OBJ_DIR)
 
-fclean: 	clean
-	@$(RM) $(NAME) $(BONUS_NAME)
+fclean:		clean
+			@$(RM) -f $(NAME) $(OBJ)
 
-re: fclean all
+re:			fclean all
 
-.PHONY: all bonus clean fclean re
+norm:
+			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+
+.PHONY:		all clean fclean re norm
